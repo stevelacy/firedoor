@@ -41,3 +41,17 @@ Model({ id }).fetch() // better as it can query by a non id
 // Getting a particular shape (only retrieve these values)
 Model({ id }).fetch(['value'])  // option one
 Model({ id }).fetch({ value: true}) // option two
+
+// With child models
+const User = new Firedoor.Model({
+  id: 'string',
+  name: 'string'
+})
+
+const Channel = new Firedoor.Model({
+  id: 'string',
+  name: 'string',
+  users: [ User ]
+})
+
+Model({ id }).fetch()
