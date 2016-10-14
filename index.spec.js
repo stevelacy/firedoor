@@ -39,5 +39,5 @@ Model.get(id).fetch()
 Model({ id }).fetch() // better as it can query by a non id
 
 // Getting a particular shape (only retrieve these values)
-Model({ id }).fetch(['value'])
-
+Model({ id }).fetch(['value'])  // option one
+Model({ id }).fetch({ value: true}) // option two
