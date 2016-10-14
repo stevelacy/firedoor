@@ -36,5 +36,8 @@ Model.fetch(id)
   .then(data => setState(data))
 
 Model.get(id).fetch()
-Model({ id }).fetch()
+Model({ id }).fetch() // better as it can query by a non id
+
+// Getting a particular shape (only retrieve these values)
+Model({ id }).fetch(['value'])
 
