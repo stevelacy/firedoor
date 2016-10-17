@@ -4,9 +4,10 @@ import Firedoor from 'firedoor'
 
 // A client side schema model
 // Validates with parse, and creates the schema
+const DataSource = require('./the-data-source')
+const firedoor = new Firedoor({ source: DataSource })
 
-
-const Model = new Firedoor.Model({
+const Model = firedoor.Model({
   path: ['itemById', '<id>', 'items'],
   schema: {
     id: 'string',
@@ -43,15 +44,18 @@ Model({ id }).fetch(['value'])  // option one
 Model({ id }).fetch({ value: true}) // option two
 
 // With child models
-const User = new Firedoor.Model({
+const User = firedoor.Model({
   id: 'string',
   name: 'string'
 })
 
-const Channel = new Firedoor.Model({
+const Channel = firedoor.Model({
   id: 'string',
   name: 'string',
   users: [ User ]
 })
 
 Model({ id }).fetch()
+
+const firstSet = User().fetch(10) // get the first 10 of a set
+const secondSet = User().fetch(10, 20) // start at 10 and select to 20
